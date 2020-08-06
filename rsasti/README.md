@@ -1,6 +1,6 @@
 # rsasti
 
-A new Flutter package project.
+Componentes utilizados nos projetos da empresa
 
 ## Getting Started
 

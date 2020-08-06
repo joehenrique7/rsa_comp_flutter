@@ -17,8 +17,11 @@ class RSAInputText extends StatelessWidget {
   final String newError;
   final GestureTapCallback onTap;
   final IconData icone;
+  final Color iconeColor;
   final IconData iconePrefix;
+  final Color iconePrefixColor;
   final IconData iconeSufix;
+  final Color iconeSufixColor;
   final double sizeFont;
   final double sizeHint;
   final Function tapSufix;
@@ -28,6 +31,7 @@ class RSAInputText extends StatelessWidget {
   final double paddingTop;
   final double paddingBottom;
   final bool isDense;
+  final Color corFonte;
 
   RSAInputText(
     this.texto, {
@@ -56,6 +60,10 @@ class RSAInputText extends StatelessWidget {
     this.paddingBottom = 3.0,
     this.paddingTop = 3.0,
     this.isDense = false,
+    this.iconeColor = Colors.black87,
+    this.iconePrefixColor = Colors.black87,
+    this.iconeSufixColor = Colors.black87,
+    this.corFonte = Colors.black87,
   });
 
   @override
@@ -75,7 +83,7 @@ class RSAInputText extends StatelessWidget {
           FocusScope.of(context).requestFocus(nextFocus);
         }
       },
-      style: TextStyle(fontSize: 13),
+      style: TextStyle(fontSize: 13, color: corFonte),
       maxLength: maxLength > 0 ? maxLength : null,
       inputFormatters: formatter == null ? null : formatter,
       decoration: InputDecoration(
@@ -84,24 +92,46 @@ class RSAInputText extends StatelessWidget {
             : Icon(
                 icone,
                 size: sizeFont,
+                color: iconeColor,
               ),
-        prefixIcon:
-            iconePrefix == null ? null : Icon(iconePrefix, size: sizeFont + 5),
+        prefixIcon: iconePrefix == null
+            ? null
+            : Icon(
+                iconePrefix,
+                size: sizeFont + 5,
+                color: iconePrefixColor,
+              ),
         suffixIcon: tapSufix == null
             ? null
             : GestureDetector(
                 onTap: tapSufix,
                 child: iconeSufix == null
                     ? null
-                    : Icon(iconeSufix, size: sizeFont + 5),
+                    : Icon(
+                        iconeSufix,
+                        size: sizeFont + 5,
+                        color: iconeSufixColor,
+                      ),
               ),
         isDense: isDense,
         contentPadding: EdgeInsets.fromLTRB(
-            paddingLeft, paddingTop, paddingRight, paddingBottom),
+          paddingLeft,
+          paddingTop,
+          paddingRight,
+          paddingBottom,
+        ),
         counterText: "",
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+        border:  OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.black87, width: 1.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.black12, width: 1.0),
+        ),        
         labelText: texto,
-        labelStyle: TextStyle(fontSize: 13),
+        labelStyle: TextStyle(fontSize: 13, color: corFonte),
         hintText: dica,
         errorText: newError,
       ),
